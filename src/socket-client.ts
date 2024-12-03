@@ -1,10 +1,11 @@
 import { Manager, Socket } from 'socket.io-client'
 
 let socket: Socket;
+const apiUrl = import.meta.env.API_URL
 
 export const connectToServer = (token: string) => {
     
-    const manager = new Manager('http://localhost:3000/socket.io/socket.io.js',{
+    const manager = new Manager(`${apiUrl}/socket.io/socket.io.js`,{
         extraHeaders: {
             hola: 'mundo',
             authentication: token
@@ -14,7 +15,6 @@ export const connectToServer = (token: string) => {
     socket?.removeAllListeners();
     socket = manager.socket('/');
     addListeners()
-    //http://localhost:3000/socket.io/socket.io.js
     
 }
 
